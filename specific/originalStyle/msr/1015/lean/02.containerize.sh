@@ -15,7 +15,7 @@ touch "${SUIF_INSTALL_INSTALL_DIR}/IntegrationServer/config/licenseKey.xml"
 
 cd "${SUIF_INSTALL_INSTALL_DIR}" || exit 2
 
-export JOB_CONTAINER_BASE_TAG="${MY_AZ_ACR_URL}/msr-1011-lean-original-recipe:Fixes_${SUIF_FIXES_DATE_TAG}"
+export JOB_CONTAINER_BASE_TAG="${MY_AZ_ACR_URL}/msr-1015-lean-original-recipe:Fixes_${SUIF_FIXES_DATE_TAG}"
 export JOB_CONTAINER_MAIN_TAG="${JOB_CONTAINER_BASE_TAG}_BUILD_${JOB_DATETIME}"
 
 echo "##vso[task.setvariable variable=JOB_CONTAINER_MAIN_TAG;]${JOB_CONTAINER_MAIN_TAG}"
