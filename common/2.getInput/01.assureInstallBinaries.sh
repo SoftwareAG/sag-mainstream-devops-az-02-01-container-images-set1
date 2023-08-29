@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# shellcheck disable=SC2154
+# shellcheck source=/dev/null
+
 . ./setEnv.sh
 . "${SUIF_CACHE_HOME}/01.scripts/commonFunctions.sh"
 . "${SUIF_CACHE_HOME}/01.scripts/installation/setupFunctions.sh"
@@ -20,17 +23,17 @@ fi
 
 if [ -f "${MY_sumBootstrapSharedBin}" ]; then
   logI "Copying sum bootstrap binary from the share"
-  cp "${MY_sumBootstrapSharedBin}" "${SUIF_PATCH_SUM_BOOSTSTRAP_BIN}"
+  cp "${MY_sumBootstrapSharedBin}" "${SUIF_PATCH_SUM_BOOTSTRAP_BIN}"
   logI "SUM bootstrap binary copied"
 else
   logI "Downloading default SUIF installer binary"
-  assureDefaultSumBoostrap "${SUIF_PATCH_SUM_BOOSTSTRAP_BIN}"
+  assureDefaultSumBoostrap "${SUIF_PATCH_SUM_BOOTSTRAP_BIN}"
   logI "Copying sum bootstrap to the share"
-  cp "${SUIF_PATCH_SUM_BOOSTSTRAP_BIN}" "${MY_sumBootstrapSharedBin}"
+  cp "${SUIF_PATCH_SUM_BOOTSTRAP_BIN}" "${MY_sumBootstrapSharedBin}"
   logI "SUM Bootstrap binary copied, result $?"
 fi
 chmod u+x "${SUIF_INSTALL_INSTALLER_BIN}"
-chmod u+x "${SUIF_PATCH_SUM_BOOSTSTRAP_BIN}"
+chmod u+x "${SUIF_PATCH_SUM_BOOTSTRAP_BIN}"
 
 # Assure zips too
 

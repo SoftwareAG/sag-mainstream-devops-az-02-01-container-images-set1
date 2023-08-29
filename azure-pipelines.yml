@@ -6,22 +6,22 @@ trigger:
 
 pool:
   name: WmDevOpsTutorialAgentsPool
-  vmImage: Canonical:0001-com-ubuntu-confidential-vm-focal:20_04-lts-gen2:latest
+  vmImage: Canonical:0001-com-ubuntu-confidential-vm-focal:20_04-lts-cvm:latest
 
 variables:
   - group: ContainerImagesBuild.Options
 
 jobs:
 
-- job: msr1011leanOriginalApproach
-  displayName: 'MSR 10.11 lean original approach'
+- job: msr1015leanOriginalApproach
+  displayName: 'MSR 10.15 lean original approach'
   steps:
 
     # In general the provided code is reusable and will be templatized when mature enough
     # Write here the job specific parameters for now
-    # This job is specialized for MSR/1011/lean
+    # This job is specialized for MSR/1015/lean
     - script: |
-        JOB_SUIF_TEMPLATE="MSR/1011/lean"
+        JOB_SUIF_TEMPLATE="MSR/1015/lean"
         echo "Job will use SUIF template ${JOB_SUIF_TEMPLATE}"
         echo "##vso[task.setvariable variable=JOB_SUIF_TEMPLATE;]${JOB_SUIF_TEMPLATE}"
       displayName: "Init Specifics"
@@ -71,12 +71,12 @@ jobs:
       inputs:
         secureFile: 'msr-license.xml'
 
-    # Setup MSR 10.11 lean
-    - script: ./specific/originalStyle/msr/1011/lean/01.install.sh
+    # Setup MSR 10.15 lean
+    - script: ./specific/originalStyle/msr/1015/lean/01.install.sh
       displayName: 'Install MSR'
 
     # Containerize
-    - script: ./specific/originalStyle/msr/1011/lean/02.containerize.sh
+    - script: ./specific/originalStyle/msr/1015/lean/02.containerize.sh
       displayName: 'Containerize MSR'
 
     # Service Principal is required to connect to ACR
@@ -102,15 +102,15 @@ jobs:
       displayName: 'Unmount images share'
       condition: always()
 
-- job: msr1011as1CustomApproach
-  displayName: 'MSR 10.11 Adapter Set1 multi staged approach'
+- job: msr1015as1CustomApproach
+  displayName: 'MSR 10.15 JDBC Adapter multi staged approach'
   steps:
 
     # In general the provided code is reusable and will be templatized when mature enough
     # Write here the job specific parameters for now
-    # This job is specialized for MSR/1011/lean
+    # This job is specialized for MSR/1015/lean
     - script: |
-        JOB_SUIF_TEMPLATE="MSR/1011/AdaptersSet1"
+        JOB_SUIF_TEMPLATE="MSR/1015/jdbc"
         echo "Job will use SUIF template ${JOB_SUIF_TEMPLATE}"
         echo "##vso[task.setvariable variable=JOB_SUIF_TEMPLATE;]${JOB_SUIF_TEMPLATE}"
       displayName: "Init Specifics"
@@ -157,8 +157,8 @@ jobs:
         secureFile: 'msr-license.xml'
 
     # Containerize
-    - script: ./specific/multiStageStyle/msr/1011/as1/01.containerize.sh
-      displayName: 'Containerize MSR Adapter Set 1'
+    - script: ./specific/multiStageStyle/msr/1015/jdbc/01.containerize.sh
+      displayName: 'Containerize MSR with JDBC Adapter'
 
     # Service Principal is required to connect to ACR
     - task: DownloadSecureFile@1

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck source=/dev/null
+
 . ./setEnv.sh
 . "${SUIF_CACHE_HOME}/01.scripts/commonFunctions.sh"
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck source=/dev/null
+
 # run from the folder containing setEnv.sh
 . ./setEnv.sh
 . "${SUIF_CACHE_HOME}/01.scripts/commonFunctions.sh"
@@ -27,7 +29,7 @@ sudo chmod a+w "${SUIF_INSTALL_INSTALL_DIR}"
 
 logI "Installing MSR..."
 
-applySetupTemplate "MSR/1011/lean"
+applySetupTemplate "MSR/1015/lean"
 
 installResult=$?
 
