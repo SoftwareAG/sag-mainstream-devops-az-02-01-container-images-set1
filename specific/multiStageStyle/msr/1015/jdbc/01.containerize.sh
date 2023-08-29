@@ -18,7 +18,7 @@ mv "${SUIF_CACHE_HOME}/05.docker-image-builders/MSR/1015/msr-jdbc-custom-builder
 mv "${SUIF_INSTALL_IMAGE_FILE}" /tmp/build_context/products.zip
 mv "${SUIF_INSTALL_INSTALLER_BIN}" /tmp/build_context/installer.bin
 mv "${SUIF_PATCH_FIXES_IMAGE_FILE}" /tmp/build_context/fixes.zip
-mv "${SUIF_PATCH_SUM_BOOSTSTRAP_BIN}" /tmp/build_context/sum-bootstrap.bin
+mv "${SUIF_PATCH_SUM_BOOTSTRAP_BIN}" /tmp/build_context/sum-bootstrap.bin
 cp "${MSRLICENSE_SECUREFILEPATH}" /tmp/build_context/msr-license.xml
 
 export JOB_CONTAINER_BASE_TAG="${MY_AZ_ACR_URL}/msr-1011-jdbc-custom-recipe1:Fixes_${SUIF_FIXES_DATE_TAG}"
