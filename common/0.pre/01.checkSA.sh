@@ -34,5 +34,3 @@ if [ $resultMount -ne 0 ]; then
 fi
 
 sudo umount "${MOUNT_POINT}"
-
-exit 101
