@@ -21,5 +21,3 @@ buildah login -u "${AZ_ACR_SP_ID}" -p "${AZ_ACR_SP_SECRET}" "${MY_AZ_ACR_URL}" |
 
 echo "INFO :Logging out"
 buildah logout "${MY_AZ_ACR_URL}"
-
-exit 101
