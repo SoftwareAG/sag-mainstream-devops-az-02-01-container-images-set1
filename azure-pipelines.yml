@@ -23,6 +23,7 @@ variables:
 
 stages:
 - stage: Prerequisites
+  displayName: Prerequisites
   jobs:
   - job: checkSA
     displayName: 'Check Storage Account'
