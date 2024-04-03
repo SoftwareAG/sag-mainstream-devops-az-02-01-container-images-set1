@@ -20,10 +20,10 @@ if [ -z ${AZ_ACR_SP_ID+x} ]; then
 fi
 
 logI "Logging in to repository ${MY_AZ_ACR_URL}"
-buildah login -u "${AZ_ACR_SP_ID}" -p "${AZ_ACR_SP_SECRET}" "${MY_AZ_ACR_URL}"
+buildah login -u "${AZ_ACR_SP_ID}" -p "${AZ_ACR_SP_SECRET}" "${MY_AZ_ACR_URL}" || exit 1
 
 logI "Pushing tag ${JOB_CONTAINER_MAIN_TAG}"
-buildah push "${JOB_CONTAINER_MAIN_TAG}"
+buildah push "${JOB_CONTAINER_MAIN_TAG}" || exit 2
 
 if [[ "${BUILD_SOURCEBRANCHNAME}" == "main" ]]; then
   logI "Source branch is main, overwriting tag ${JOB_CONTAINER_BASE_TAG} too"
@@ -31,7 +31,7 @@ if [[ "${BUILD_SOURCEBRANCHNAME}" == "main" ]]; then
   buildah tag "${JOB_CONTAINER_MAIN_TAG}" "${JOB_CONTAINER_BASE_TAG}"
 
   logI "Pushing tag ${JOB_CONTAINER_BASE_TAG}"
-  buildah push "${JOB_CONTAINER_BASE_TAG}"
+  buildah push "${JOB_CONTAINER_BASE_TAG}" || exit 3
 fi
 
 logI "Logging out"
