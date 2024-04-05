@@ -25,6 +25,9 @@ buildah login -u "${AZ_ACR_SP_ID}" -p "${AZ_ACR_SP_SECRET}" "${MY_AZ_ACR_URL}" |
 logI "Pushing tag ${JOB_CONTAINER_POSTGRES_VARIANT_MAIN_TAG}"
 buildah push "${JOB_CONTAINER_POSTGRES_VARIANT_MAIN_TAG}" || exit 2
 
+logI "Pushing tag ${JOB_CONTAINER_POSTGRES_VARIANT_MAIN_OCI_TAG}"
+buildah push "${JOB_CONTAINER_POSTGRES_VARIANT_MAIN_OCI_TAG}" || exit 5
+
 if [[ "${BUILD_SOURCEBRANCHNAME}" == "main" ]]; then
   logI "Source branch is main, overwriting tag ${JOB_CONTAINER_POSTGRES_VARIANT_BASE_TAG} too"
   logI "Tagging ${JOB_CONTAINER_POSTGRES_VARIANT_MAIN_TAG} to ${JOB_CONTAINER_POSTGRES_VARIANT_BASE_TAG}}"

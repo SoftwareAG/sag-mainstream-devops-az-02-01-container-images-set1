@@ -25,13 +25,13 @@
 logI "Pushing tag ${JOB_CONTAINER_MAIN_TAG}"
 buildah push "${JOB_CONTAINER_MAIN_TAG}" || exit 2
 
-if [[ "${BUILD_SOURCEBRANCHNAME}" == "main" ]]; then
-  logI "Source branch is main, overwriting tag ${JOB_CONTAINER_BASE_TAG} too"
-  logI "Tagging ${JOB_CONTAINER_MAIN_TAG} to ${JOB_CONTAINER_BASE_TAG}}"
-  buildah tag "${JOB_CONTAINER_MAIN_TAG}" "${JOB_CONTAINER_BASE_TAG}"
+if [[ ${BUILD_SOURCEBRANCHNAME} == "main" ]]; then
+	logI "Source branch is main, overwriting tag ${JOB_CONTAINER_BASE_TAG} too"
+	logI "Tagging ${JOB_CONTAINER_MAIN_TAG} to ${JOB_CONTAINER_BASE_TAG}}"
+	buildah tag "${JOB_CONTAINER_MAIN_TAG}" "${JOB_CONTAINER_BASE_TAG}"
 
-  logI "Pushing tag ${JOB_CONTAINER_BASE_TAG}"
-  buildah push "${JOB_CONTAINER_BASE_TAG}" || exit 3
+	logI "Pushing tag ${JOB_CONTAINER_BASE_TAG}"
+	buildah push "${JOB_CONTAINER_BASE_TAG}" || exit 3
 fi
 
 logI "Logging out"
